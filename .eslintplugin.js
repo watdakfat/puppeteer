@@ -14,8 +14,8 @@ const cleanupBlockComment = value => {
       }
       return value.trimEnd();
     })
-    .join('\n')
-    .trim();
+    .join('\n').trim();
+    // .trim();
 };
 
 const format = (value, offset, prettierOptions) => {
