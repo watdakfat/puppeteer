@@ -15,7 +15,7 @@ const puppeteer = require('puppeteer');
  *
  */
 
-const firefoxOptions = {
+const myfirefoxOptions = {
   product: 'firefox',
   extraPrefsFirefox: {
     // Enable additional Firefox logging from its protocol implementation
@@ -26,7 +26,7 @@ const firefoxOptions = {
 };
 
 (async () => {
-  const browser = await puppeteer.launch(firefoxOptions);
+  const browser = await puppeteer.launch(myfirefoxOptions);
 
   const page = await browser.newPage();
   console.log(await browser.version());

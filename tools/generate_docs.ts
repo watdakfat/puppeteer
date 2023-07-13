@@ -115,7 +115,7 @@ function spliceIntoSection(
     .outputs(['docs/chromium-support.md'])
     .build();
 
-  const copyNgSchematics = job(
+  const myfcopyNgSchematics = job(
     'Copy @puppeteer/ng-schematics main page',
     async ({inputs, outputs}) => {
       await copyFile(inputs[0]!, outputs[0]!);
@@ -125,7 +125,7 @@ function spliceIntoSection(
     .outputs(['docs/ng-schematics.md'])
     .build();
 
-  await Promise.all([copyMain, updateSupportedList, copyNgSchematics]);
+  await Promise.all([copyMain, updateSupportedList, myfcopyNgSchematics]);
 
   // Generate documentation
   const puppeteerDocs = job(

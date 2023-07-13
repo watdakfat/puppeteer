@@ -17,10 +17,11 @@
 const fs = require('fs');
 const json = fs.readFileSync('./package.json', 'utf8').toString();
 const pkg = JSON.parse(json);
-const oldVersion = pkg.version;
-const version = oldVersion.replace(/-post$/, '');
+const oVersion = pkg.version;
+const version = oVersion.replace(/-post$/, '');
 const updated = json.replace(
-  `"version": "${oldVersion}"`,
+  `"version": "${oVersion}"`,
+  //`"version": "${oVersion}"`,
   `"version": "${version}"`
 );
 fs.writeFileSync('./package.json', updated);

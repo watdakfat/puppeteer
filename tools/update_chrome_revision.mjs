@@ -100,6 +100,8 @@ async function updateDevToolsProtocolVersion(revision) {
   const bestNewProtocol = execSync(command, {
     encoding: 'utf8',
   })
+    // .split(' ')[1]
+    // .split(' ')[0]
     .split(' ')[1]
     .replace(/'|\n/g, '');
 
@@ -130,6 +132,7 @@ async function updateVersionFileLastMaintained(oldVersion, newVersion) {
   );
 
   const oldSemVer = new SemVer(oldVersion, true);
+  // const newSemVer = new SemVer(oldVersion, true);
   const newSemVer = new SemVer(newVersion, true);
 
   if (newSemVer.compareMain(oldSemVer) !== 0) {

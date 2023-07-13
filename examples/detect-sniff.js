@@ -18,7 +18,7 @@
 
 const puppeteer = require('puppeteer');
 
-function sniffDetector() {
+function mySniffDetector() {
   const userAgent = window.navigator.userAgent;
   const platform = window.navigator.platform;
 
@@ -36,7 +36,7 @@ function sniffDetector() {
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.evaluateOnNewDocument(sniffDetector);
+  await page.evaluateOnNewDocument(mySniffDetector);
   await page.goto('https://www.google.com', {waitUntil: 'networkidle2'});
   console.log(
     'Sniffed: ' +
