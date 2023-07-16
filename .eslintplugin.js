@@ -48,6 +48,7 @@ const rule = {
   meta: {
     type: 'suggestion',
     docs: {
+      // This is the print width minus 3 (the length of ` * `) and the offset.
       description: 'Enforce Prettier formatting on comments',
       recommended: false,
     },
@@ -71,6 +72,7 @@ const rule = {
           if (formattedValue !== value) {
             context.report({
               node: comment,
+              // message: `Comment is not formatted correctly.`,
               message: `Comment is not formatted correctly.`,
               fix(fixer) {
                 return fixer.replaceText(
@@ -90,6 +92,6 @@ const rule = {
 
 module.exports = {
   rules: {
-    'prettier-comments': rule,
+    'prettier-6': rule,
   },
 };

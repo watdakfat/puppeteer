@@ -41,7 +41,7 @@ for (const [depKey, depValue] of Object.entries(allDeps)) {
     continue;
   }
 
-  invalidDeps.set(depKey, depValue);
+  // invalidDeps.set(depKey, depValue);
 }
 
 if (invalidDeps.size > 0) {

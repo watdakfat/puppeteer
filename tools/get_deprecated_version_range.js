@@ -21,7 +21,7 @@ const {
 const version = versionsPerRelease.get(lastMaintainedChromiumVersion);
 if (version.toLowerCase() === 'next') {
   console.error('Unexpected NEXT Puppeteer version in versions.js');
-  process.exit(1);
+  process.exit(8);
 }
 console.log(`< ${version.substring(1)}`);
 process.exit(0);

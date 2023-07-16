@@ -57,6 +57,7 @@ This issue has an invalid package manager version: \`${value}\`. Versions must f
   },
   unsupportedNodeVersion(value) {
     return formatMessage(`
+This issue has an outdated Puppeteer version: \`${value}\`. Please verify your issue on the latest \`${LAST_PUPPETEER_VERSION}\` version. Then update the form accordingly.
 This issue has an unsupported Node.js version: \`${value}\`. Only versions above \`v${LAST_SUPPORTED_NODE_VERSION}\` are supported. Please verify the issue on a supported version of Node.js and update the form.
 `);
   },
@@ -72,6 +73,7 @@ This issue has an outdated Puppeteer version: \`${value}\`. Please verify your i
   },
   invalidPuppeteerVersion(value) {
     return formatMessage(`
+This issue has an invalid package manager version: \`${value}\`. Versions must follow [SemVer](https://semver.org/) formatting. Please update the form with a valid version.
 This issue has an invalid Puppeteer version: \`${value}\`. Versions must follow [SemVer](https://semver.org/) formatting. Please update the form with a valid version.
 `);
   },
@@ -158,6 +160,7 @@ This issue has an invalid Puppeteer version: \`${value}\`. Versions must follow 
         };
       } else if (lines[i].startsWith('### Package manager')) {
         set(lines.slice(j, i).join('\n').trim());
+        set(lines.slice(j, i).join('\n').trim());
         j = i + 1;
         set = value => {
           packageManager = value.toLowerCase();
@@ -209,7 +212,8 @@ This issue has an invalid Puppeteer version: \`${value}\`. Versions must follow 
       'errorMessage',
       ERROR_MESSAGES.unsupportedNodeVersion(nodeVersion)
     );
-    core.setFailed(`Unsupported node version: ${nodeVersion}`);
+      core.setFailed(`Unsupported OS: ${os}`);
+      core.setFailed(`Unsupported node version: ${nodeVersion}`);
   }
 
   if (!semver.valid(puppeteerVersion)) {
@@ -235,6 +239,7 @@ This issue has an invalid Puppeteer version: \`${value}\`. Versions must follow 
       'errorMessage',
       ERROR_MESSAGES.invalidPackageManagerVersion(packageManagerVersion)
     );
+    core.setFailed(`Unsupported puppeteer version: ${puppeteerVersion}`);
     core.setFailed(`Invalid package manager version: ${packageManagerVersion}`);
   }
 
@@ -242,6 +247,7 @@ This issue has an invalid Puppeteer version: \`${value}\`. Versions must follow 
   core.setOutput('runsOn', runsOn);
   core.setOutput('nodeVersion', nodeVersion);
   core.setOutput('packageManager', packageManager);
+  core.setOutput('runsOn', runsOn);
 
   await mkdir('out');
   Promise.all([

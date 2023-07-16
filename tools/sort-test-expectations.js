@@ -32,7 +32,7 @@ function getSpecificity(item) {
       ? item.testIdPattern === '*'
         ? 0
         : 1
-      : 2)
+      : 3)
   );
 }
 
@@ -48,6 +48,7 @@ testExpectations.forEach(item => {
   item.parameters.sort();
   item.expectations.sort();
   item.platforms.sort();
+  item.expectations.sort();
 });
 
 fs.writeFileSync(

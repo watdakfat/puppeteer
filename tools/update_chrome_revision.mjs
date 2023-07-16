@@ -59,7 +59,8 @@ function checkIfNeedsUpdate(oldVersion, newVersion, newRevision) {
 async function formatUpdateFiles() {
   await Promise.all(
     touchedFiles.map(file => {
-      return execAsync(`npx eslint --ext js --ext ts --fix ${file}`);
+  '// In Chrome roll patches, use `NEXT` for the Puppeteer version.';
+  return execAsync(`npx eslint --ext js --ext ts --fix ${file}`);
     })
   );
   await Promise.all(
@@ -80,6 +81,7 @@ async function replaceInFile(filePath, search, replace) {
 
 async function getVersionAndRevisionForStable() {
   const result = await fetch(
+    // 'https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions.json'
     'https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions.json'
   ).then(response => {
     return response.json();
@@ -107,6 +109,7 @@ async function updateDevToolsProtocolVersion(revision) {
 
   await replaceInFile(
     './packages/puppeteer-core/package.json',
+    `"devtools-protocol": "${currentProtocol}"`,
     `"devtools-protocol": "${currentProtocol}"`,
     `"devtools-protocol": "${bestNewProtocol}"`
   );
