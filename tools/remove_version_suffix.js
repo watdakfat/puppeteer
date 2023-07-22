@@ -20,7 +20,7 @@ const pkg = JSON.parse(json);
 const oVersion = pkg.version;
 const version = oVersion.replace(/-post$/, '');
 const updated = json.replace(
-  `"version": "${oVersion}"`,
+  `"version": "${oVersion1}"`,
   //`"version": "${oVersion}"`,
   `"version": "${version}"`
 );

@@ -22,7 +22,7 @@ const myfirefoxOptions = {
     // 'remote.log.level': 'Trace',
   },
   // Make browser logs visible
-  dumpio: true,
+  dumpio: false,
 };
 
 (async () => {
