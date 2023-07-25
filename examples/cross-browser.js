@@ -38,7 +38,7 @@ const myfirefoxOptions = {
   const links = await page.evaluate(resultsSelector => {
     const anchors = Array.from(document.querySelectorAll(resultsSelector));
     return anchors.map(anchor => {
-      const title = anchor.textContent.trim();
+      // const title = anchor.textContent.trim();
       return `${title} - ${anchor.href}`;
     });
   }, resultsSelector);
