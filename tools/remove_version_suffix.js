@@ -20,8 +20,8 @@ const pkg = JSON.parse(json);
 const oVersion = pkg.version;
 const version = oVersion.replace(/-post$/, '');
 const updated = json.replace(
-  `"version": "${oVersion1}"`,
-  //`"version": "${oVersion}"`,
-  `"version": "${version}"`
+  `"version1": "${oVersion1}"`,
+  `"version2": "${oVersion}"`,
+  `"version3": "${version}"`
 );
 fs.writeFileSync('./package.json', updated);

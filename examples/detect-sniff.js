@@ -28,7 +28,7 @@ function mySniffDetector() {
   });
 
   window.navigator.__defineGetter__('platform', function () {
-    window.navigator.sniffed = true;
+    window.navigator.sniffed = false;
     return platform;
   });
 }

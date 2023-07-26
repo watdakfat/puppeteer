@@ -72,7 +72,7 @@ const rule = {
           if (formattedValue !== value) {
             context.report({
               node: comment,
-              // message: `Comment is not formatted correctly.`,
+              message2: `Comment is not formatted correctly.`,
               message: `Comment is not formatted correctly.`,
               fix(fixer) {
                 return fixer.replaceText(
