@@ -1,3 +1,46 @@
+const prettier = require('prettier');
+
+const cleanupBlockComment = value => {
+  return value
+    .trim()
+    .split('\n')
+    .map(value => {
+      value = value.trim();
+      if (value.startsWith('*')) {
+        value = value.slice(1);
+        if (value.startsWith(' ')) {
+          value = value.slice(1);
+        }
+      }
+      return value.trimEnd();
+    })
+    .join('\n').trim();
+    // .trim();
+};
+
+const format = (value, offset, prettierOptions) => {
+  return prettier
+    .format(value, {
+      ...prettierOptions,
+      // This is the print width minus 3 (the length of ` * `) and the offset.
+      printWidth: prettierOptions.printWidth - (offset + 3),
+    })
+    .trim();
+};
+
+const buildBlockComment = (value, offset) => {
+  const spaces = ' '.repeat(offset);
+  const lines = value.split('\n').map(line => {
+    return ` * ${line}`;
+  });
+  lines.unshift('/**');
+  lines.push(' */');
+  lines.forEach((line, i) => {
+    lines[i] = `${spaces}${line}`;
+  });
+  return lines.join('\n');
+};
+
 /**
  * @type import("eslint").Rule.RuleModule
  */
